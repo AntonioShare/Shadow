@@ -84,8 +84,8 @@ android {
 // 创建两个假的apk，用于验证打包流程（packagePlugin）
 afterEvaluate {
     tasks.getByPath(":stub-project:assemblePluginA1B2Debug").doLast {
-        File loader = project.file("build/outputs/apk/plugina1b2debug/loader.apk")
-        File runtime = project.file("build/outputs/apk/plugina1b2debug/runtime.apk")
+        File loader = project.file("build/$apkDirName/apk/plugina1b2debug/loader.apk")
+        File runtime = project.file("build/$apkDirName/apk/plugina1b2debug/runtime.apk")
         loader.parentFile.mkdirs()
         loader.createNewFile()
         runtime.createNewFile()
@@ -103,7 +103,7 @@ shadow {
                         businessName = 'stub-project'
                         partKey = 'stub-project'
                         buildTask = ':stub-project:assemblePluginA1B2Debug'
-                        apkPath = 'stub-project/build/outputs/apk/pluginA1B2/debug/stub-project-plugin-A1-B2-debug.apk'
+                        apkPath = "stub-project/build/$apkDirName/apk/pluginA1B2/debug/stub-project-plugin-A1-B2-debug.apk"
                         dependsOn = ['Core', 'Base']
                         hostWhiteList = ["androidx.test.espresso",
                                          "com.tencent.shadow.test.lib.plugin_use_host_code_lib.interfaces"]
