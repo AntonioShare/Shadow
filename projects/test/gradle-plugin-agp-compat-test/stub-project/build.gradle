@@ -8,7 +8,14 @@ buildscript {
             def value = stringValue?.isInteger() ? stringValue as Integer : stringValue
             ext.set(key, value)
         }
-        def apkDirName = (System.getProperty("idea.active")?.toBoolean() ?: false) ? "intermediates" : "outputs"
+        // 7.1.0 4.2.0
+        var apgVersion = $TestAGPVersion
+        apgVersion = apgVersion.replace(".", "").toInteger()
+        // 当版本大于7.1.0时才设置apkDirName
+        def apkDirName = "outputs"
+        if (apgVersion > 710) {
+            apkDirName = (System.getProperty("idea.active")?.toBoolean() ?: false) ? "intermediates" : "outputs"
+        }
         ext.set("apkDirName", apkDirName)
     }
     repositories {
