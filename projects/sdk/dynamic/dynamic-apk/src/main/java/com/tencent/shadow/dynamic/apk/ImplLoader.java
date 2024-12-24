@@ -77,11 +77,7 @@ public abstract class ImplLoader {
         System.arraycopy(b, 0, c, aLen, bLen);
         return c;
     }
-
-    /**
-     * check dex file read only
-     * @param installedApk installedApk
-     */
+    
     private static void checkDexReadOnly(InstalledApk installedApk) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
             boolean readOnly = new File(Objects.requireNonNull(installedApk.apkFilePath)).setReadOnly();
