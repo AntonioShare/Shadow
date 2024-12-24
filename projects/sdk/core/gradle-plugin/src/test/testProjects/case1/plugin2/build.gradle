@@ -66,7 +66,7 @@ shadow {
                         partKey = 'plugin2'
                         buildTask = ':plugin2:assemblePluginDebug'
                         //这里因为单元测试时，会把项目根目录设置成case1的根目录
-                        apkPath = 'plugin2/build/outputs/apk/plugin/debug/plugin2-plugin-debug.apk'
+                        apkPath = "plugin2/build/$apkDirName/apk/plugin/debug/plugin2-plugin-debug.apk"
                         dependsOn = ['Core', 'Base']
                         hostWhiteList = ["androidx.test.espresso",
                                          "com.tencent.shadow.test.lib.plugin_use_host_code_lib.interfaces"]
