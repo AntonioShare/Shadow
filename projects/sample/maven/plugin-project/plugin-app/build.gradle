@@ -75,7 +75,7 @@ shadow {
                         partKey = 'sample-plugin'
                         buildTask = 'assemblePluginDebug'
                         apkName = 'plugin-app-plugin-debug.apk'
-                        apkPath = 'plugin-app/build/outputs/apk/plugin/debug/plugin-app-plugin-debug.apk'
+                        apkPath = "plugin-app/build/$apkDirName/apk/plugin/debug/plugin-app-plugin-debug.apk"
                     }
                 }
             }
@@ -89,7 +89,7 @@ shadow {
                         partKey = 'sample-plugin'
                         buildTask = 'assemblePluginRelease'
                         apkName = 'plugin-app-plugin-release.apk'
-                        apkPath = 'plugin-app/build/outputs/apk/plugin/release/plugin-app-plugin-release.apk'
+                        apkPath = "plugin-app/build/$apkDirName/apk/plugin/release/plugin-app-plugin-release.apk"
                     }
                 }
             }
