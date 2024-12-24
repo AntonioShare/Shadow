@@ -18,9 +18,13 @@
 
 package com.tencent.shadow.dynamic.apk;
 
+import android.os.Build;
+
 import com.tencent.shadow.core.common.InstalledApk;
 
+import java.io.File;
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 import dalvik.system.DexClassLoader;
 
@@ -35,6 +39,7 @@ public abstract class ImplLoader {
     }
 
     public String[] loadWhiteList(InstalledApk installedApk, String whiteListClassName, String whiteListFieldName) {
+        checkDexReadOnly(installedApk);
         DexClassLoader dexClassLoader = new DexClassLoader(
                 installedApk.apkFilePath,
                 installedApk.oDexPath,
@@ -71,5 +76,14 @@ public abstract class ImplLoader {
         System.arraycopy(a, 0, c, 0, aLen);
         System.arraycopy(b, 0, c, aLen, bLen);
         return c;
+    }
+
+    private static void checkDexReadOnly(InstalledApk installedApk) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
+            boolean readOnly = new File(Objects.requireNonNull(installedApk.apkFilePath)).setReadOnly();
+            if (!readOnly) {
+                throw new RuntimeException("apk file is not read only");
+            }
+        }
     }
 }
