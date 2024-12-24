@@ -75,7 +75,6 @@ preBuild.dependsOn(":sample-host-lib:jarDebugPackage")
 
 def createDuplicateApkTask(buildType) {
     def apkDir = file("${getBuildDir()}/$apkDirName/apk/plugin/$buildType")
-    println("apkDir = $apkDir")
     return tasks.create("duplicatePlugin${buildType.capitalize()}ApkTask", Copy) {
         group = 'build'
         description = "复制一个sample-app-plugin-${buildType}.apk用于测试目的"
